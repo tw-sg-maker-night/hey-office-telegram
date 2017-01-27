@@ -1,0 +1,28 @@
+{
+  "update_id": 193985550,
+  "message": {
+    "message_id": 1,
+    "from": {
+      "id": 51890598,
+      "first_name": "Col",
+      "last_name": "Harris",
+      "username": "col_harris"
+    },
+    "chat": {
+      "id": 51890598,
+      "first_name": "Col",
+      "last_name": "Harris",
+      "username": "col_harris",
+      "type": "private"
+    },
+    "date": 1485391281,
+    "text": "/start",
+    "entities": [
+      {
+        "type": "bot_command",
+        "offset": 0,
+        "length": 6
+      }
+    ]
+  }
+}
