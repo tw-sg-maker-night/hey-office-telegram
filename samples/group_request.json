@@ -1,0 +1,20 @@
+{
+  "update_id": 300898958,
+  "message": {
+    "message_id": 176,
+    "from": {
+      "id": 51890598,
+      "first_name": "Col",
+      "last_name": "Harris",
+      "username": "col_harris"
+    },
+    "chat": {
+      "id": -104934022,
+      "title": "Maker Night \\ud83d\\udee0\\u2699\\ud83d\\udd29\\ud83d\\udce6\\ud83d\\udcbb\\u231a\\ufe0f\\ud83c\\udf7b\\ud83c\\uddf8\\ud83c\\uddec",
+      "type": "group",
+      "all_members_are_administrators": true
+    },
+    "date": 1489908301,
+    "text": "Hi all"
+  }
+}
