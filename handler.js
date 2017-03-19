@@ -13,13 +13,11 @@ function inspect(obj) {
 
 module.exports.webhook = (event, context, callback) => {
   console.log("Event = " + inspect(event))
-  // console.log("Context = " + inspect(context))
-  // console.log("Token = " + process.env.TELEGRAM_BOT_TOKEN)
 
   var message = JSON.parse(event.body).message || { chat: {} }
 
-  var botName = "HeyOffice"
-  var aliasName = "ios_dev"
+  var botName = process.env.LEX_BOT_NAME
+  var aliasName = process.env.LEX_BOT_ALIAS
   var userId = "123456789"
 
   var body = JSON.stringify({
