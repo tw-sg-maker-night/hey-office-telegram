@@ -6,12 +6,10 @@ phases:
         - npm install
     build:
       commands:
-        - "serverless deploy"
-        - "aws cloudformation describe-stacks --stack-name $(serverless info | grep service: | cut -d' ' -f2)-$(serverless info | grep stage: | cut -d' ' -f2) --query 'Stacks[0].Outputs[?OutputKey==`ServiceEndpoint`].OutputValue' --output text > service_endpoint.txt"
+        - serverless deploy -v
 artifacts:
   files:
     - lib/*
     - handler.js
     - package.json
     - serverless.yml
-    - service_endpoint.txt
