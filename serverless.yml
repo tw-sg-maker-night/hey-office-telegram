@@ -29,9 +29,6 @@ resources:
           -
             AttributeName: chatId
             AttributeType: S
-          -
-            AttributeName: createdAt
-            AttributeType: S
         KeySchema:
           -
             AttributeName: chatId
