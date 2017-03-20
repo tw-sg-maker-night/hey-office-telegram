@@ -76,7 +76,7 @@ describe('webhook', () => {
       var startChatSessionStub = null
 
       beforeEach(() => {
-        event = {body: JSON.stringify({message: {chat: {id: "chat-001", type: "group"}, from: {id: "user-001"}, text: "@HeyOffice do something for me"}})}
+        event = {body: JSON.stringify({message: {chat: {id: "chat-001", type: "group"}, from: {id: "user-001"}, text: "@HeyOfficeBot do something for me"}})}
         startChatSessionStub = sinon.stub(ChatSession, 'startChatSession').callsFake((_, callback) => { callback(null, null) })
       })
 
