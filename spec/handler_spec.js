@@ -54,6 +54,11 @@ describe('webhook', () => {
   describe('when in a group chat', () => {
     beforeEach(() => {
       event = {body: JSON.stringify({message: {chat: {id: "chat-001", type: "group"}, from: {id: "user-001"}, text: "Hello"}})}
+      sinon.stub(ChatSession, 'isChatSessionStarted').callsFake((_, callback) => { callback(null, false) })
+    })
+
+    afterEach(() => {
+      ChatSession.isChatSessionStarted.restore()
     })
 
     it('should always return success', (done) => {
@@ -77,7 +82,7 @@ describe('webhook', () => {
 
       beforeEach(() => {
         event = {body: JSON.stringify({message: {chat: {id: "chat-001", type: "group"}, from: {id: "user-001"}, text: "@HeyOfficeBot do something for me"}})}
-        startChatSessionStub = sinon.stub(ChatSession, 'startChatSession').callsFake((_, callback) => { callback(null, null) })
+        startChatSessionStub = sinon.stub(ChatSession, 'startChatSession')
       })
 
       afterEach(() => {
