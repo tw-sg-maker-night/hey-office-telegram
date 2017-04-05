@@ -8,9 +8,9 @@ const ChatSession = require('../lib/chat_session')
 const webhook = require('../lib/handler').webhook
 
 describe('webhook', () => {
-  var event = {}
-  var context = {}
-  var sendMessageStub = null
+  let event = {}
+  let context = {}
+  let sendMessageStub = null
 
   beforeEach(() => {
     process.env.LEX_BOT_NAME = "HeyOffice"
@@ -33,7 +33,7 @@ describe('webhook', () => {
     })
 
     it('should always return success', (done) => {
-      var callback = (_, response) => {
+      let callback = (_, response) => {
         expect(response.statusCode).to.equal(200)
         done()
       }
@@ -62,7 +62,7 @@ describe('webhook', () => {
     })
 
     it('should always return success', (done) => {
-      var callback = (_, response) => {
+      let callback = (_, response) => {
         expect(response.statusCode).to.equal(200)
         done()
       }
@@ -70,7 +70,7 @@ describe('webhook', () => {
     })
 
     it('should not respond to normal messages', (done) => {
-      var callback = (_, response) => {
+      let callback = (_, response) => {
         expect(sendMessageStub.called).to.be.false
         done()
       }
@@ -78,7 +78,7 @@ describe('webhook', () => {
     })
 
     describe('when addressed directly', () => {
-      var startChatSessionStub = null
+      let startChatSessionStub = null
 
       beforeEach(() => {
         event = {body: JSON.stringify({message: {chat: {id: "chat-001", type: "group"}, from: {id: "user-001"}, text: "@HeyOfficeBot do something for me"}})}
@@ -90,7 +90,7 @@ describe('webhook', () => {
       })
 
       it('should respond with the lex response', (done) => {
-        var callback = (_, response) => {
+        let callback = (_, response) => {
           expect(sendMessageStub.calledWith('chat-001', 'Hi')).to.be.true
           done()
         }
@@ -98,7 +98,7 @@ describe('webhook', () => {
       })
 
       it('should start a chat session', (done) => {
-        var callback = (_, response) => {
+        let callback = (_, response) => {
           expect(startChatSessionStub.calledWith('chat-001')).to.be.true
           done()
         }
