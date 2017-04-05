@@ -8,7 +8,6 @@ const ChatSession = require('../lib/chat_session')
 const webhook = require('../lib/handler').webhook
 
 describe('webhook', () => {
-  const stopCommand = 'shut up'
   let event = {}
   let context = {}
   let sendMessageStub = null
@@ -16,7 +15,6 @@ describe('webhook', () => {
   beforeEach(() => {
     process.env.LEX_BOT_NAME = "HeyOffice"
     process.env.LEX_BOT_ALIAS = "$LATEST"
-    process.env.STOP_COMMAND = stopCommand
 
     AWS.mock('LexRuntime', 'postText', (params, callback) => {
       callback(null, {message: "Hi"});
@@ -113,7 +111,7 @@ describe('webhook', () => {
       let stopChatSessionStub
 
       beforeEach(() => {
-        event = {body: JSON.stringify({message: {chat: {id: "chat-001", type: "group"}, from: {id: "user-001"}, text: stopCommand}})}
+        event = {body: JSON.stringify({message: {chat: {id: "chat-001", type: "group"}, from: {id: "user-001"}, text: 'shut up'}})}
         stopChatSessionStub = sinon.stub(ChatSession, 'stopChatSession')
       })
 
