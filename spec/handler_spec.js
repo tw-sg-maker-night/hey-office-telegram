@@ -11,14 +11,14 @@ describe('webhook', () => {
   let event = {}
   let context = {}
   let sendMessageStub = null
+  let lexPostTextStub = null
 
   beforeEach(() => {
     process.env.LEX_BOT_NAME = "HeyOffice"
     process.env.LEX_BOT_ALIAS = "$LATEST"
 
-    AWS.mock('LexRuntime', 'postText', (params, callback) => {
-      callback(null, {message: "Hi"});
-    })
+    lexPostTextStub = sinon.stub().callsArgWith(1, null, {message: "Hi"})
+    AWS.mock('LexRuntime', 'postText', lexPostTextStub)
     sendMessageStub = sinon.stub(Telegram, 'sendMessage').callsFake(() => {})
   })
 
@@ -88,6 +88,15 @@ describe('webhook', () => {
 
       afterEach(() => {
         startChatSessionStub.restore()
+      })
+
+      it('should forward the message to Lex (without the bot name)', (done) => {
+        let callback = (_, response) => {
+          expect(lexPostTextStub.called).to.be.true
+          sinon.assert.calledWith(lexPostTextStub, sinon.match.has("inputText", "do something for me"))
+          done()
+        }
+        webhook(event, context, callback)
       })
 
       it('should respond with the lex response', (done) => {
